@@ -102,6 +102,12 @@ const sendGiftChangedMessage = (recipientId) =>
 const sendGiftPurchasedMessage = (recipientId, giftId) =>
   sendMessage(recipientId, messages.giftPurchasedMessage(giftId));
 
+const getBathrooms = (recipientId, xCoord, yCoord, radius) =>
+    sendMessage(recipientId, messages.getBathroomsMessage(xCoord, yCoord, radius));
+
+const setBathroom = (recipientId, xCoord, yCoord, radius) =>
+    sendMessage(recipientId, messages.setBathroomsMessage(xCoord, yCoord, radius));
+
 
 export default {
   sendMessage,
@@ -111,4 +117,6 @@ export default {
   sendChooseGiftMessage,
   sendGiftChangedMessage,
   sendGiftPurchasedMessage,
+  getBathrooms,
+  setBathroom,
 };

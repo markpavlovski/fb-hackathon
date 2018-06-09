@@ -18,6 +18,7 @@
 // ===== STORES ================================================================
 import UserStore from '../stores/user-store';
 import GiftStore from '../stores/gift-store';
+import Bathroom from '../models/bathroom';
 
 
 // ===== UTILS =================================================================
@@ -216,6 +217,16 @@ const giftPurchasedMessage = (giftId) => {
   };
 };
 
+const getBathroomsMessage = (xCoord, yCoord, radius) => {
+  const bathrooms;
+  // TODO
+};
+
+const setBathroomsMessage = (xCoord, yCoord, radius) => {
+    const bathrooms;
+    // TODO
+};
+
 /**
  * The persistent menu for users to use.
  */
@@ -254,4 +265,6 @@ export default {
   giftPurchasedMessage,
   persistentMenu,
   getStarted,
+  getBathroomsMessage,
+  setBathroomsMessage,
 };

@@ -54,6 +54,12 @@ const handleReceivePostback = (event) => {
   case 'GET_STARTED':
     sendApi.sendHelloRewardMessage(senderId);
     break;
+  case 'GET_BATHROOMS':
+    sendApi.getBathrooms(senderId, xCoord, yCoord, radius);
+    break;
+  case 'SET_BATHROOMS':
+    sendApi.setBathroom(senderId, xCoord, yCoord, radius);
+    break;
   default:
     console.error(`Unknown Postback called: ${type}`);
     break;
