@@ -2,6 +2,7 @@ package com.example.demo.bathroom;
 
 import com.example.demo.review.ReviewRepository;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,11 +36,10 @@ public class MapController {
 
     @GetMapping("/map")
     public String dashboard(Model model) {
-
-
         List<Bathroom> bathrooms = (List<Bathroom>) bathroomRepository.findAll();
-
-        model.addAttribute("bathrooms", new Gson().toJson(bathrooms));
+        Gson gsonBuilder = new GsonBuilder()
+                .setExclusionStrategies(new BathroomExclStrat()).create();
+        model.addAttribute("bathrooms", gsonBuilder.toJson(bathrooms));
         return "map";
     }
 
