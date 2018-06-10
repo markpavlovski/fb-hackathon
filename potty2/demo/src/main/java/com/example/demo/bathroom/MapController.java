@@ -29,8 +29,8 @@ public class MapController {
 
     //Adding a Review
     @RequestMapping(value = "addReview")
-    public String addComment(Model model) {
-        model.addAttribute("bathroom", new Bathroom());
+    public String addReview(Model model) {
+        model.addAttribute("review", new Review());
         return "addReview";
     }
 
@@ -48,6 +48,12 @@ public class MapController {
     @PostMapping("/save")
     public String save(@ModelAttribute Bathroom bathroom) {
         bathroomRepository.save(bathroom);
+        return "redirect:/map";
+    }
+
+    @PostMapping("/saveReview")
+    public String save(@ModelAttribute Review review) {
+        reviewRepository.save(review);
         return "redirect:/map";
     }
 
