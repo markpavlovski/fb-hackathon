@@ -17,8 +17,8 @@
 
             var value = [(${bathrooms})];
 
-            var latlng = new google.maps.LatLng(0,0);
-            var latlng1 = new google.maps.LatLng(0,1);
+            var starterLocation = value[0];
+            var latlng = new google.maps.LatLng(starterLocation.lat,starterLocation.lon);
 
             var myOptions = {
                 zoom: 12,
@@ -28,17 +28,19 @@
 
             var map = new google.maps.Map(document.getElementById("map_container"), myOptions);
 
-            var marker = new google.maps.Marker({
-                position: latlng,
-                map: map,
-                title: "my hometown, Malim Nawar!"
-            });
+            // make markers
+            for (var i = 0; i < value.length; i++) {
+                console.log(value[i]);
 
-            var marker2 = new google.maps.Marker({
-                position: latlng1,
-                map: map,
-                title: "my hometown, Malim Nawar!"
-            });
+                var curVal = value[i];
+                var curLoc = new google.maps.LatLng(curVal.lat,curVal.lon);
+
+                var marker = new google.maps.Marker({
+                    position: curLoc,
+                    map: map,
+                    title: curLoc.description
+                });
+            }
 
         function notNullNorUndefined(val) {
             return val !== null && val !== undefined;
