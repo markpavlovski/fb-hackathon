@@ -26,15 +26,27 @@ public class Review {
     @Column(name = "user")
     String user;
 
+    public Review(){
+
+    }
+
     public Review(String body, String user, Date createDate) {
+        super();
         this.body = body;
         this.user = user;
         this.createDate = createDate;
     }
 
+    public Bathroom getBathroom() {
+        return bathroom;
+    }
+
+    public void setBathroom(Bathroom bathroom) {
+        this.bathroom = bathroom;
+    }
+
     @ManyToOne
-    @JoinColumn(name = "bathroom_id", referencedColumnName = "bathroom_id", nullable = false)
-    @NotNull
+    @JoinColumn(name = "bathroom_id", referencedColumnName = "bathroom_id")
     private Bathroom bathroom;
 
     @Temporal(TemporalType.TIMESTAMP)
