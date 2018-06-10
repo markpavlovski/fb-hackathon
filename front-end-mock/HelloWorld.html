@@ -1,54 +1,52 @@
-  <html>
+<html>
+
 <head>
-    <title>Google Map Hello World Example</title>
-    <style type="text/css">
-div#map_container{
-	width:100%;
-	height:350px;
-}
+  <title>Google Map Hello World Example</title>
+  <link rel="stylesheet" href="./style.css">
+  <style type="text/css">
+    div#map_container {
+      width: 100%;
+      height: 350px;
+    }
+  </style>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
+  <script type="text/javascript">
+    function loadMap() {
+      var latlng = new google.maps.LatLng(51.508742, -122.3321);
+      var latlng2 = new google.maps.LatLng(45.5122, -122.6587);
 
-    </style>
-    <script type="text/javascript"
-            src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+      var myOptions = {
+        zoom: 4,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
 
-    <script type="text/javascript">
-  function loadMap() {
-    var latlng = new google.maps.LatLng(51.508742, -122.3321);
-    var latlng2 = new google.maps.LatLng(45.5122, -122.6587);
+      var map = new google.maps.Map(document.getElementById("map_container"), myOptions);
 
-    var myOptions = {
-      zoom: 4,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+      var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        title: "my hometown, Malim Nawar!"
+      });
 
-    var map = new google.maps.Map(document.getElementById("map_container"),myOptions);
+      var marker2 = new google.maps.Marker({
+        position: latlng2,
+        map: map,
+        title: "my hometown, Malim Nawar!"
+      });
 
-    var marker = new google.maps.Marker({
-      position: latlng,
-      map: map,
-      title:"my hometown, Malim Nawar!"
-    });
-
-    var marker2 = new google.maps.Marker({
-      position: latlng2,
-      map: map,
-      title:"my hometown, Malim Nawar!"
-    });
-
-  }
-
-
-    </script>
+    }
+  </script>
 </head>
+
 <body onload="loadMap()">
 
-<h1>Place holder</h1>
+  <h1>Place holder</h1>
 
 
-<div id="map_container"></div>
-<div>Maybe a table here?</div>
+  <div id="map_container"></div>
+  <div>Maybe a table here?</div>
 </body>
 
 </html>
