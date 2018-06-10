@@ -64,7 +64,7 @@ public class MapController {
         return "redirect:/map";
     }
 
-    @RequestMapping(value = "addReview/saveReview", method = RequestMethod.POST)
+    @RequestMapping(value = "/saveReview", method = RequestMethod.POST)
     public String saveReview(@ModelAttribute Review review, BindingResult result) {
         if (result.hasErrors()) {
             throw new RuntimeException();
