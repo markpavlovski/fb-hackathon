@@ -42,50 +42,12 @@
                 });
             }
 
-        function notNullNorUndefined(val) {
-            return val !== null && val !== undefined;
         }
-
-        let center = (notNullNorUndefined(usrLat) && notNullNorUndefined(usrLon)) ? {lat: usrLat, lng: usrLon} : latlng;
-
-        let myOptions = {
-          zoom: 12,
-          center: center,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        let map = new google.maps.Map(document.getElementById("map_container"), myOptions);
-
-        let marker = new google.maps.Marker({
-          position: latlng,
-          map: map,
-          title: "my hometown, Malim Nawar!"
-        });
-
-        let marker2 = new google.maps.Marker({
-          position: latlng1,
-          map: map,
-          title: "my hometown, Malim Nawar!"
-        });
-
-      }
-
-      function getPosition() {
-          if(navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition((position) => {
-                  loadMap(position.coords.latitude, position.coords.longitude);
-              });
-         }
-         else {
-              console.log("Geolocation unavailable in this browser");
-              loadMap();
-          }
-      }
 
 
     </script>
 </head>
-<body onload="getPosition()">
+<body onload="loadMap()">
 
 <h1>HELLO WORLD!!! [[${bathrooms}]]</h1>
 
