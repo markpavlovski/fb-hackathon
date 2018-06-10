@@ -40,6 +40,8 @@ public class MapController {
         Gson gsonBuilder = new GsonBuilder()
                 .setExclusionStrategies(new BathroomExclStrat()).create();
         model.addAttribute("bathrooms", gsonBuilder.toJson(bathrooms));
+        model.addAttribute("bathroomsData",bathrooms);
+
         return "map";
     }
 

@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Google Map Hello World Example</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
     <!--to turn on Wendi.css, uncomment the line below-->
     <!--<link type="text/css" rel="stylesheet" th:href="@{css/wendi.css}" />-->
 
@@ -24,7 +24,7 @@
             var value = [(${bathrooms})];
 
             var starterLocation = value[0];
-            var latlng = new google.maps.LatLng(starterLocation.lat,starterLocation.lon);
+            var latlng = new google.maps.LatLng(starterLocation.lat, starterLocation.lon);
 
             var myOptions = {
                 zoom: 12,
@@ -39,7 +39,7 @@
                 console.log(value[i]);
 
                 var curVal = value[i];
-                var curLoc = new google.maps.LatLng(curVal.lat,curVal.lon);
+                var curLoc = new google.maps.LatLng(curVal.lat, curVal.lon);
 
                 var marker = new google.maps.Marker({
                     position: curLoc,
@@ -61,41 +61,51 @@
 <div id="map_container"></div>
 
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <table class="table">
-                <thead class="thead-light">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Reviews</th>
+            <th scope="col">@</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="b : ${bathroomsData}">
+            <td th:text="${b.description}">
+            </td>
+            <td th:text="${b.gender}">
+            </td>
+            <td th:each ="r : *{b.reviews}">
+                <span th:text="${r.body}"></span>
+                , Left by
+                <span th:text="${r.user}"></span>
+                 --
+                <span th:text="${r.createDate}"></span>
+            </td>
+            <!--<table class="table table-striped">-->
+            <!--<tr>-->
+            <!--<th>Content</th>-->
+            <!--<th>User@</th>-->
+            <!--<th>Commented</th>-->
+            <!--</tr>-->
+            <!--<tr th:each = "r, iterStat" : ${b.reviews}}>-->
+            <!--&lt;!&ndash;<td th:text="${r.body}">&ndash;&gt;-->
+            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td th:text="${r.user}">&ndash;&gt;-->
+            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td th:text="${r.createDate}">&ndash;&gt;-->
+            <!--</td>-->
+            <!--<span th:text="${r.body}"/><th:block th:if="${!iterStat.last}">,</th:block>-->
+            <!--</span>-->
+            <!--</tr>-->
+            <!--</table>-->
+        </tr>
+        </tbody>
+    </table>
 </div>
+
 
 <div>
     <a href="/add" class="btn btn-primary">Add A Bathroom</a>
