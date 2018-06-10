@@ -69,6 +69,7 @@
             <th scope="col">Gender</th>
             <th scope="col">Reviews</th>
             <th scope="col">@</th>
+            <th scope="col">Add Review</th>
         </tr>
         </thead>
         <tbody>
@@ -83,6 +84,9 @@
                 <span th:text="${r.user}"></span>
                  --
                 <span th:text="${r.createDate}"></span>
+            </td>
+            <td>
+                <a href="/addReview" class="btn btn-primary">+</a>
             </td>
             <!--<table class="table table-striped">-->
             <!--<tr>-->
