@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+<h1>Adding a bathroom</h1>
+<div>
+    <form th:object="${bathroom}" th:action="@{save}" action="#" method="post">
+        Latitude: <br>
+        <input type="text" th:field="*{lat}" class="form-control"
+               placeholder="Latitude" />
+        <div style="clear: both; display: block; height: 10px;"></div>
+        Longitude: <br>
+
+        <input type="text" th:field="*{lon}" class="form-control"
+               placeholder="Longitude" />
+        <div style="clear: both; display: block; height: 10px;"></div>
+
+        Description: <br>
+        <input type="text" th:field="*{description}" class="form-control"
+               placeholder="Description" />
+        <div style="clear: both; display: block; height: 10px;"></div>
+
+        Gender: <br>
+        <input type="text" th:field="*{gender}" class="form-control"
+               placeholder="gender" />
+        <div style="clear: both; display: block; height: 10px;"></div>
+        <input type="submit" class="btn btn-primary" value="save"></input>
+    </form>
+</div>
+</body>
+</html>

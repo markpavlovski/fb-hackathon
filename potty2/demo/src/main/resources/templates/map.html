@@ -2,11 +2,10 @@
 <head>
     <title>Google Map Hello World Example</title>
     <style type="text/css">
-div#map_container{
-	width:100%;
-	height:350px;
-}
-
+        div#map_container {
+            width: 100%;
+            height: 350px;
+        }
 
 
     </style>
@@ -14,32 +13,31 @@ div#map_container{
             src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <script type="text/javascript">
-  function loadMap() {
-    var latlng = new google.maps.LatLng([[${bathrooms[0].Lat}]], [[${bathrooms[0].Lon}]]);
-    var latlng1 = new google.maps.LatLng([[${bathrooms[1].Lat}]], [[${bathrooms[1].Lon}]]);
+        function loadMap() {
+            var latlng = new google.maps.LatLng([[${bathrooms[0].Lat}]], [[${bathrooms[0].Lon}]]);
+            var latlng1 = new google.maps.LatLng([[${bathrooms[1].Lat}]], [[${bathrooms[1].Lon}]]);
 
-    var myOptions = {
-      zoom: 4,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+            var myOptions = {
+                zoom: 12,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
 
-    var map = new google.maps.Map(document.getElementById("map_container"),myOptions);
+            var map = new google.maps.Map(document.getElementById("map_container"), myOptions);
 
-    var marker = new google.maps.Marker({
-      position: latlng,
-      map: map,
-      title:"my hometown, Malim Nawar!"
-    });
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: "my hometown, Malim Nawar!"
+            });
 
-    var marker2 = new google.maps.Marker({
-      position: latlng1,
-      map: map,
-      title:"my hometown, Malim Nawar!"
-    });
+            var marker2 = new google.maps.Marker({
+                position: latlng1,
+                map: map,
+                title: "my hometown, Malim Nawar!"
+            });
 
-  }
-
+        }
 
 
     </script>
@@ -50,6 +48,10 @@ div#map_container{
 
 
 <div id="map_container"></div>
+
+<div>
+    <a href="/add" class="btn btn-primary">Add A Bathroom</a>
+</div>
 </body>
 
 </html>
