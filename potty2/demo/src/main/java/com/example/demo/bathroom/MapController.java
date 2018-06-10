@@ -1,14 +1,19 @@
 package com.example.demo.bathroom;
 
+import com.example.demo.events.Student;
 import com.example.demo.review.ReviewRepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MapController {
@@ -28,9 +33,17 @@ public class MapController {
     }
 
     //Adding a Review
-    @RequestMapping(value = "addReview")
-    public String addReview(Model model) {
-        model.addAttribute("review", new Review());
+    @RequestMapping(value = "/addReview/{id}",  method = RequestMethod.GET)
+    public String addReview(@PathVariable("id") Long bathroomId, Model model) {
+        Optional<Bathroom> bathroom = bathroomRepository.findById(bathroomId);
+        Review review = new Review();
+
+        if (!bathroom.isPresent()){
+            throw new RuntimeException("bathroom for this ID is missing");
+        }
+
+        review.setBathroom(bathroom.get());
+        model.addAttribute("review", review);
         return "addReview";
     }
 
@@ -51,9 +64,16 @@ public class MapController {
         return "redirect:/map";
     }
 
-    @PostMapping("/saveReview")
-    public String save(@ModelAttribute Review review) {
+    @RequestMapping(value = "addReview/saveReview", method = RequestMethod.POST)
+    public String saveReview(@ModelAttribute Review review, BindingResult result) {
+        if (result.hasErrors()) {
+            throw new RuntimeException();
+        }
+
+        System.out.println(review);
+
         reviewRepository.save(review);
+
         return "redirect:/map";
     }
 

@@ -85,4 +85,9 @@ public class Review {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+    @Override
+    public String toString() {
+        return "Review has bathroom? " + this.getBathroom().getId();
+    }
 }

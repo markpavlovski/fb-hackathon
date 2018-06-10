@@ -13,6 +13,10 @@ public class Bathroom {
   @Column(name = "bathroom_id")
   private Long id;
 
+  public Long getId() {
+    return id;
+  }
+
   double lat;
   double lon;
 
@@ -83,11 +87,15 @@ public class Bathroom {
   }
 
 
-  @Override public String toString() {
-    return "LatLon{" +
-        "lat=" + lat +
-
-        ", lon=" + lon +
-        '}';
+  @Override
+  public String toString() {
+    return "Bathroom{" +
+            "id=" + id +
+            ", lat=" + lat +
+            ", lon=" + lon +
+            ", description='" + description + '\'' +
+            ", gender='" + gender + '\'' +
+            ", reviews=" + reviews +
+            '}';
   }
 }

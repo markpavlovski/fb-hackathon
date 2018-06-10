@@ -86,25 +86,9 @@
                 <span th:text="${r.createDate}"></span>
             </td>
             <td>
-                <a href="/addReview" class="btn btn-primary">+</a>
+                <a th:href="@{/addReview/{id}(id=${b.id})}" class="btn btn-primary">+</a>
             </td>
-            <!--<table class="table table-striped">-->
-            <!--<tr>-->
-            <!--<th>Content</th>-->
-            <!--<th>User@</th>-->
-            <!--<th>Commented</th>-->
-            <!--</tr>-->
-            <!--<tr th:each = "r, iterStat" : ${b.reviews}}>-->
-            <!--&lt;!&ndash;<td th:text="${r.body}">&ndash;&gt;-->
-            <!--&lt;!&ndash;</td>&ndash;&gt;-->
-            <!--&lt;!&ndash;<td th:text="${r.user}">&ndash;&gt;-->
-            <!--&lt;!&ndash;</td>&ndash;&gt;-->
-            <!--&lt;!&ndash;<td th:text="${r.createDate}">&ndash;&gt;-->
-            <!--</td>-->
-            <!--<span th:text="${r.body}"/><th:block th:if="${!iterStat.last}">,</th:block>-->
-            <!--</span>-->
-            <!--</tr>-->
-            <!--</table>-->
+
         </tr>
         </tbody>
     </table>
