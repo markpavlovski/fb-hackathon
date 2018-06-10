@@ -1,0 +1,10 @@
+h1 {
+    text-align: center;
+}
+
+
+div#map_container {
+    width: 100%;
+    z-index: auto;
+    height: 50vh;
+}
