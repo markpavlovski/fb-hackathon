@@ -14,37 +14,55 @@ div#map_container{
             src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <script type="text/javascript">
-  function loadMap() {
-    var latlng = new google.maps.LatLng([[${bathrooms[0].Lat}]], [[${bathrooms[0].Lon}]]);
-    var latlng1 = new google.maps.LatLng([[${bathrooms[1].Lat}]], [[${bathrooms[1].Lon}]]);
+      function loadMap(usrLat, usrLon) {
+        let latlng = new google.maps.LatLng([[${bathrooms[0].Lat}]], [[${bathrooms[0].Lon}]]);
+        let latlng1 = new google.maps.LatLng([[${bathrooms[1].Lat}]], [[${bathrooms[1].Lon}]]);
 
-    var myOptions = {
-      zoom: 4,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+        function notNullNorUndefined(val) {
+            return val !== null && val !== undefined;
+        }
 
-    var map = new google.maps.Map(document.getElementById("map_container"),myOptions);
+        let center = (notNullNorUndefined(usrLat) && notNullNorUndefined(usrLon)) ? {lat: usrLat, lng: usrLon} : latlng;
 
-    var marker = new google.maps.Marker({
-      position: latlng,
-      map: map,
-      title:"my hometown, Malim Nawar!"
-    });
+        let myOptions = {
+          zoom: 4,
+          center: center,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
 
-    var marker2 = new google.maps.Marker({
-      position: latlng1,
-      map: map,
-      title:"my hometown, Malim Nawar!"
-    });
+        let map = new google.maps.Map(document.getElementById("map_container"), myOptions);
 
-  }
+        let marker = new google.maps.Marker({
+          position: latlng,
+          map: map,
+          title:"my hometown, Malim Nawar!"
+        });
+
+        let marker2 = new google.maps.Marker({
+          position: latlng1,
+          map: map,
+          title:"my hometown, Malim Nawar!"
+        });
+
+      }
+
+      function getPosition() {
+          if(navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition((position) => {
+                  loadMap(position.coords.latitude, position.coords.longitude);
+              });
+         }
+         else {
+              console.log("Geolocation unavailable in this browser");
+              loadMap();
+          }
+      }
 
 
 
     </script>
 </head>
-<body onload="loadMap()">
+<body onload="getPosition()">
 
 <h1>HELLO WORLD!!! [[${bathrooms}]]</h1>
 
