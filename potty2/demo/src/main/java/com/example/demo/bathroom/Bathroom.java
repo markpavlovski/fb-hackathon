@@ -9,7 +9,8 @@ import java.util.Set;
 public class Bathroom {
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "bathroom_id")
   private Long id;
 
   double lat;
@@ -22,8 +23,16 @@ public class Bathroom {
   String gender;
 
 
-  @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-  private Collection<Review> comments;
+  public Collection<Review> getReviews() {
+    return reviews;
+  }
+
+  public void setReviews(Collection<Review> reviews) {
+    this.reviews = reviews;
+  }
+
+  @OneToMany(mappedBy = "bathroom", cascade = CascadeType.REMOVE)
+  private Collection<Review> reviews;
 
   public Bathroom(){
 
@@ -73,14 +82,6 @@ public class Bathroom {
     return gender;
   }
 
-  public void setComments(Collection<Review> comments) {
-    this.comments = comments;
-  }
-
-  public Collection<Review> getComments() {
-
-    return comments;
-  }
 
   @Override public String toString() {
     return "LatLon{" +

@@ -1,49 +1,76 @@
 package com.example.demo.bathroom;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 public class Review {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private long reviewId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    @Column(name="content")
-    String Content;
+    @Column(name = "body", columnDefinition = "TEXT")
+    private String body;
 
-    public long getReviewId() {
-        return reviewId;
+    /*
+    TODO:
+    * @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    @NotNull
+    private User user;
+    */
+    @Column(name = "user")
+    String user;
+
+    public Review(String body, String user, Date createDate) {
+        this.body = body;
+        this.user = user;
+        this.createDate = createDate;
     }
 
-    public void setReviewId(long reviewId) {
-        this.reviewId = reviewId;
+    @ManyToOne
+    @JoinColumn(name = "bathroom_id", referencedColumnName = "bathroom_id", nullable = false)
+    @NotNull
+    private Bathroom bathroom;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date", nullable = false, updatable = false)
+    @CreationTimestamp
+    private Date createDate;
+
+    public long getId() {
+        return id;
     }
 
-    public String getContent() {
-        return Content;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setContent(String content) {
-        Content = content;
+    public String getBody() {
+        return body;
     }
 
-    public String getAuthor() {
-        return Author;
+    public void setBody(String body) {
+        this.body = body;
     }
 
-    public void setAuthor(String author) {
-        Author = author;
+    public String getUser() {
+        return user;
     }
 
-    public Review(String content, String author) {
-
-        Content = content;
-        Author = author;
+    public void setUser(String user) {
+        this.user = user;
     }
 
-    @Column(name="author")
-    String Author;
+    public Date getCreateDate() {
+        return createDate;
+    }
 
-
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 }
