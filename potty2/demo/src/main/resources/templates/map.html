@@ -2,11 +2,10 @@
 <head>
     <title>Google Map Hello World Example</title>
     <style type="text/css">
-div#map_container{
-	width:100%;
-	height:350px;
-}
-
+        div#map_container {
+            width: 100%;
+            height: 350px;
+        }
 
 
     </style>
@@ -25,7 +24,7 @@ div#map_container{
         let center = (notNullNorUndefined(usrLat) && notNullNorUndefined(usrLon)) ? {lat: usrLat, lng: usrLon} : latlng;
 
         let myOptions = {
-          zoom: 4,
+          zoom: 12,
           center: center,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
@@ -35,13 +34,13 @@ div#map_container{
         let marker = new google.maps.Marker({
           position: latlng,
           map: map,
-          title:"my hometown, Malim Nawar!"
+          title: "my hometown, Malim Nawar!"
         });
 
         let marker2 = new google.maps.Marker({
           position: latlng1,
           map: map,
-          title:"my hometown, Malim Nawar!"
+          title: "my hometown, Malim Nawar!"
         });
 
       }
@@ -59,7 +58,6 @@ div#map_container{
       }
 
 
-
     </script>
 </head>
 <body onload="getPosition()">
@@ -68,6 +66,10 @@ div#map_container{
 
 
 <div id="map_container"></div>
+
+<div>
+    <a href="/add" class="btn btn-primary">Add A Bathroom</a>
+</div>
 </body>
 
 </html>

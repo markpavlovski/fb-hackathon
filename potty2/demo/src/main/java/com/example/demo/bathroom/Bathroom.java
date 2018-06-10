@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Bathroom {
+
   @Id
   @GeneratedValue
   private Long id;
@@ -24,10 +25,31 @@ public class Bathroom {
 
   }
 
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public void setLat(double lat) {
+    this.lat = lat;
+  }
+
+  public void setLon(double lon) {
+    this.lon = lon;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public void setGender(String gender) {
+    this.gender = gender;
+  }
+
   public Bathroom(double lat, double lon, String description, String gender) {
     this.lat = lat;
     this.lon = lon;
     this.description = description;
+
     this.gender = gender;
   }
 
