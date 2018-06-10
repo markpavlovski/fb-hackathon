@@ -13,9 +13,32 @@
             src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <script type="text/javascript">
-      function loadMap(usrLat, usrLon) {
-        let latlng = new google.maps.LatLng([[${bathrooms[0].Lat}]], [[${bathrooms[0].Lon}]]);
-        let latlng1 = new google.maps.LatLng([[${bathrooms[1].Lat}]], [[${bathrooms[1].Lon}]]);
+        function loadMap() {
+
+            var value = [(${bathrooms})];
+
+            var latlng = new google.maps.LatLng(0,0);
+            var latlng1 = new google.maps.LatLng(0,1);
+
+            var myOptions = {
+                zoom: 12,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById("map_container"), myOptions);
+
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: "my hometown, Malim Nawar!"
+            });
+
+            var marker2 = new google.maps.Marker({
+                position: latlng1,
+                map: map,
+                title: "my hometown, Malim Nawar!"
+            });
 
         function notNullNorUndefined(val) {
             return val !== null && val !== undefined;

@@ -3,6 +3,7 @@ package com.example.demo.bathroom;
 import com.example.demo.bathroom.Bathroom;
 import com.example.demo.bathroom.BathroomRepository;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,16 +28,11 @@ public class MapController {
 
     @GetMapping("/map")
     public String dashboard(Model model) {
-        //    LatLon location = new LatLon(47.6062, -122.3321);
-        //    LatLon location2 = new LatLon(45.5122, -122.6587);
+
 
         List<Bathroom> bathrooms = (List<Bathroom>) repository.findAll();
 
-
-//    model.addAttribute("Location", location);
-//    model.addAttribute("Location2", location2);
-
-        model.addAttribute("bathrooms", bathrooms);
+        model.addAttribute("bathrooms", new Gson().toJson(bathrooms));
         return "map";
     }
 
